@@ -22,10 +22,10 @@
 #include <ctype.h>
 
 
-FP_Tree_Generation(long long);
+void FP_Tree_Generation(long long);
 
-generateFrequentItemSets();
+void generateFrequentItemSets();
 
-sortInputTransaction();
+void sortInputTransaction();
 
-createFPTree();
+void createFPTree();
