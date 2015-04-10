@@ -3,7 +3,7 @@
 
   Team: Knowledge-mining
 
-  Tuthors:  Akash Raj K N
+  Authors:  Akash Raj K N
             Gopichand Paturi
             Anjali Thakur
 */
@@ -18,6 +18,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+
+#include "FP_TREE_GEN.h"
+
 
 int main()
 {
