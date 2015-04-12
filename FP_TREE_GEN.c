@@ -21,11 +21,14 @@ long long minSupportCount = 0;
 
 
 
-FP_Tree_Generation( long long minSupport )
+void FP_Tree_Generation( long long minSupport )
 {
   minSupportCount = minSupport;
 
   generateFrequentItemSets();  //from the input file, generate the frequent itemsets
 }
+
+
+
 
 
