@@ -1,12 +1,15 @@
-/*
-  Copyright (c) data-fetish
-
-  Team: Knowledge-mining
-
-  Authors:  Akash Raj K N
-            Gopichand Paturi
-            Anjali Thakur
-*/
+/*----------------------------------------------------------------------------*/
+/*                                                                            */
+/*   Copyright (c) 2015 data-fetish                                           */
+/*   All rights reserved.                                                     */
+/*                                                                            */
+/*   Team: Knowledge-mining                                                   */
+/*                                                                            */
+/*   Authors:  Akash Raj K N                                                  */
+/*             Gopichand Paturi                                               */
+/*             Anjali Thakur                                                  */
+/*                                                                            */
+/*----------------------------------------------------------------------------*/
 
 /*
     FP-Growth Algorithm
@@ -36,13 +39,13 @@ int main()
 
   */
 
-  long long minSupportCount = 0;
+//  long long minSupportCount = 0;
 
   printf( "Enter the minimum support count: " );
   scanf( "%lld", &minSupportCount );
 
-  //FP_Tree_Generation( minSupportCount );
-
+  //FP_Tree_Generation();
+  FP_Tree_generate();
   //FP_Growth();
 
   return 0;
