@@ -30,13 +30,19 @@ struct itemNode
   long long support;
 };
 
-
-extern void FP_Tree_Generation(long long);
+void FP_Tree_generate();
 
 void generateFrequentItemSets();
+
+//int comparator2(const void *, const void *);
 
 void sortInputTransaction();
 
 void createFPTree();
 
 int comparator(const void *, const void *);
+
+int comparator2(const void *, const void *);
+
+
+extern long long minSupportCount;
