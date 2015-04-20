@@ -131,7 +131,9 @@ void sortInputTransaction()
         currentNum = 0;
       } 
     }
-    tempItem[tempIdx] = currentNum; //current line's numbers are in tempItem array
+    tempItem[tempIdx] = currentNum; //current line's numbers are in tempItem array  
+
+
 
     //currentLine = malloc(tempIdx*sizeof(long long));
 
