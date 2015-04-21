@@ -19,11 +19,17 @@
 #include "FP_TREE_GEN.h"
 
 
+
+
 //global variables
 long long minSupportCount = 0;
 long long n ,k;
+long long numFreqItems;
 struct itemNode *itemSet;
 long long *frequentItems;
+struct treeNode *head = NULL;
+struct fList *freqList;
+//struct fList tempFList;
 
 FILE *fp;
 FILE *freqp;
@@ -33,7 +39,9 @@ void FP_Tree_generate()
 {
   generateFrequentItemSets();  //from the input file, generate the frequent itemsets
 
-  sortInputTransaction();
+  sortInputTransaction();      //sort input tid based on support and discard infrequent items
+
+  createFPTree();
 }
 
 
@@ -84,6 +92,18 @@ void generateFrequentItemSets()
     frequentItems[itemSet[i].id] = itemSet[i].support;
   }
 
+  /* create the table for the FP-Tree */
+  numFreqItems = i; //number of frequent items (with support > than minSupportCount)
+
+  freqList = (struct fList *)malloc(100*sizeof(struct fList)); // frequent itemList table
+
+  for( i=0; i<numFreqItems; ++i )
+  {
+    freqList[i].id = itemSet[i].id;
+    freqList[i].support = itemSet[i].id;
+    freqList[i].ptr = NULL;
+  }
+
   fclose(fp);
 }
 
@@ -96,11 +116,12 @@ void sortInputTransaction()
   char buf[500];
   //char *buf;
   //long long *tempItem, tempIdx, currentNum, i, currentLineLen;
-  long long tempItem[75], tempIdx, currentNum, i, currentLineLen;
+  long long tempItem[k], tempIdx, currentNum, i, currentLineLen;
+  
   //long long *currentLine;
-  long long currentLine[75];
-  size_t len = 500;
-  ssize_t read;
+  long long currentLine[k]; //current line that is read, sorted
+  //size_t len = 500; 
+  //ssize_t read;
 
   //buf = malloc(500*sizeof(char));//printf("one\n");
   //tempItem = malloc(k*sizeof(long long));
@@ -134,7 +155,6 @@ void sortInputTransaction()
     tempItem[tempIdx] = currentNum; //current line's numbers are in tempItem array  
 
 
-
     //currentLine = malloc(tempIdx*sizeof(long long));
 
     currentLineLen = 0;
@@ -148,7 +168,7 @@ void sortInputTransaction()
       currentLine[currentLineLen++] = tempItem[i]; //fill currentLine with only frequent itemSets
     }
 
-    qsort(currentLine, currentLineLen, sizeof(long long), comparator2);
+    qsort(currentLine, currentLineLen, sizeof(long long), comparator2); //sort the current line of transactions
 
     for( i=0; i<currentLineLen; ++i )
     {
@@ -159,7 +179,6 @@ void sortInputTransaction()
     //free(currentLine);
   }
   printf("\n");
-
 
   //free(buf);
   //free(tempItem);
@@ -184,4 +203,12 @@ int comparator2( const void *p, const void *q )
   long long r = frequentItems[*(long long *)q];
 
   return (r-l);
+}
+
+
+void createFPTree()
+{
+
+
+
 }

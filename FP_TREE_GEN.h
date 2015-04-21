@@ -24,11 +24,29 @@
 #include <string.h>
 #include <ctype.h>
 
+
 struct itemNode
 {
   long long id;
   long long support;
 };
+
+struct treeNode
+{
+  struct treeNode *parent;
+  long long id;
+  long long count;
+  struct node *horizontal;
+  struct node **children;
+};
+
+struct fList
+{
+  long long id;
+  long long support;
+  struct treeNode *ptr;
+};
+
 
 void FP_Tree_generate();
 
@@ -46,3 +64,5 @@ int comparator2(const void *, const void *);
 
 
 extern long long minSupportCount;
+
+extern struct treeNode *head;
