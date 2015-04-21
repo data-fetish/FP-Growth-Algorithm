@@ -22,7 +22,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "FP_TREE_GEN.h"
+#include "FP_TREE_GEN.c"
 
 
 int main()
