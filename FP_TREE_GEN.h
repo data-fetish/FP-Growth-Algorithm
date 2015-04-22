@@ -36,8 +36,8 @@ struct treeNode
   struct treeNode *parent;
   long long id;
   long long count;
-  struct node *horizontal;
-  struct node **children;
+  struct treeNode *horizontal;
+  struct treeNode **children;
 };
 
 struct fList
