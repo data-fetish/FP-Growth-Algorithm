@@ -80,7 +80,6 @@ void generateFrequentItemSets()
   for(i=0; i<=k; ++i)
   {
     frequentItems[i] = -1; //initialize with -1
-    //printf("%lld %lld\n",itemSet[i].id, itemSet[i].support );
   }
 
   for(i=0; i<=k; ++i)
@@ -90,7 +89,7 @@ void generateFrequentItemSets()
       break;
     }
 
-    //frequentItems[i] = itemSet[i].id; // frequent itemsets generated
+    // frequent itemsets generated
     frequentItems[itemSet[i].id] = itemSet[i].support;
   }
 
@@ -98,10 +97,8 @@ void generateFrequentItemSets()
   /* create the table for the FP-Tree */
   numFreqItems = i; //number of frequent items (with support > than minSupportCount)
 
-  //freqList = (struct fList *)malloc(100*sizeof(struct fList)); // frequent itemList table
-
   for( i=0; i<numFreqItems; ++i )
-  {//printf("freqlist %lld\n",itemSet[i].id );
+  {
     freqList[i].id = itemSet[i].id;
     freqList[i].support = itemSet[i].support;
     freqList[i].ptr = NULL;
@@ -117,31 +114,18 @@ void sortInputTransaction()
   fp = fopen( "input.txt", "r" );
 
   char buf[500];
-  //char *buf;
-  //long long *tempItem, tempIdx, currentNum, i, currentLineLen;
+
   long long tempItem[k], tempIdx, currentNum, i, currentLineLen;
   
-  //long long *currentLine;
   long long currentLine[k]; //current line that is read, sorted
-  //size_t len = 500; 
-  //ssize_t read;
-
-  //buf = malloc(500*sizeof(char));//printf("one\n");
-  //tempItem = malloc(k*sizeof(long long));
-  //currentLine = malloc(k*sizeof(long long)); //giving malloc allocation error
-
-  //fscanf( fp, "%lld %lld", &n, &k );
-  //read = getline(&buf, &len, fp);
 
   fgets(buf, 500, fp);int counter = 0;
 
-  //sort the frequent itemsets
-  //while( (read = getline(&buf, &len, fp))!=-1 )
   while( (fgets(buf, 500,fp))!=NULL )
   {
     tempIdx = 0;
     currentNum = 0;
-    //printf("%s\n\n",buf );
+
     for( i = 0; i<strlen(buf); ++i )
     {
       if(buf[i]!=' ')
@@ -156,8 +140,6 @@ void sortInputTransaction()
       } 
     }
 
-
-    //currentLine = malloc(tempIdx*sizeof(long long));
 
     currentLineLen = 0;
     for( i=0; i<tempIdx; ++i )
@@ -177,14 +159,10 @@ void sortInputTransaction()
       fprintf(freqp, "%lld ",currentLine[i] );
     }
     fprintf(freqp, "\n");
-
-    //free(currentLine);
   }
+
   printf("\n");
 
-  //free(buf);
-  //free(tempItem);
-  //free(currentLine);
   fclose(fp);
   fclose(freqp);
 
@@ -255,12 +233,9 @@ void createFPTree()
             break;
           }
         }
-        //printf("currentNum %lld   ,", freqList[j].id);
-        //if(currentNum==75)
-          //printf("yay %lld\n", j);
+
         if(currentPtr->children[j] == NULL)
         {
-          //printf("children[%lld] is null\n", j);
           currentPtr->children[j] = (struct treeNode *)malloc(sizeof(struct treeNode));
           currentPtr->children[j]->id = currentNum;
           currentPtr->children[j]->parent = currentPtr;
@@ -278,7 +253,7 @@ void createFPTree()
             horizontalPtr = freqList[j].ptr;
             prevHorizontal = NULL;  
 
-            while(horizontalPtr != NULL)
+            while(horizontalPtr != NULL) //go to the last NULL in the horizontal pointers
             {
               prevHorizontal = horizontalPtr;
               temp2ptr = &(horizontalPtr->horizontal);
@@ -287,21 +262,11 @@ void createFPTree()
 
             if(prevHorizontal != currentPtr->children[j])
             {
-              *temp2ptr = currentPtr->children[j];  
+              *temp2ptr = currentPtr->children[j];    //change the last NULL in the horizontal pointers to point to current node
             }
             
-            //print the path here
           }
-//////
-/*          prevHorizontal = freqList[j].ptr;
-          while(prevHorizontal!=NULL)
-          {
-            printf("%lld->", prevHorizontal->id);
-            prevHorizontal = prevHorizontal->horizontal;
-          }
-          printf("\n\n");
-*/         
-//////          
+         
           currentPtr->children[j]->children = (struct treeNode **)malloc(numFreqItems * sizeof(struct treeNode));
           for(l=0; l<numFreqItems; ++l)
           {
@@ -310,10 +275,8 @@ void createFPTree()
 
         }
         else
-        {//printf("what\n");
+        {
           currentPtr->children[j]->count++;
-
-          //currentPtr = currentPtr->children[j];
         }
         
         currentPtr = currentPtr->children[j]; // point to next child in the path
@@ -325,20 +288,18 @@ void createFPTree()
   }
 
 
-//iterate all the freqList items -- horizontal pointers - working fine
+  //iterate all the freqList items -- horizontal pointers - working fine
 
   struct treeNode *tempPtr;
+
   for(i=0; i<numFreqItems; ++i)
   {
-    //printf("%lld\n", i);
     if(freqList[i].ptr == NULL)
     {
-      //printf("325 \n");
       printf("[%lld, null]\n", freqList[i].id);
     }
     else
     {
-      //printf("330 \n");
       printf("[%lld, %lld] ->",freqList[i].id, freqList[i].support );
       currentPtr = freqList[i].ptr;
 
@@ -351,15 +312,7 @@ void createFPTree()
 
       printf("\n\n");
     }
-    //break;
   }
-
-
-  ////print the tree
-
-
-
-
 
   fclose(freqp);
 }
