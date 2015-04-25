@@ -17,7 +17,6 @@
 */
 
 #include <bits/stdc++.h>
-#include <vector>
 #include "FP_TREE_GEN.c"
 
 using namespace std;
