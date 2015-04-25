@@ -12,12 +12,12 @@
 /*----------------------------------------------------------------------------*/
 
 /*
-    FP-Growth Algorithm
+    FP-Tree Construction
     FP_TREE_GEN.h
 */
 
 
-//#pragma once
+#pragma once
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -62,7 +62,13 @@ int comparator(const void *, const void *);
 
 int comparator2(const void *, const void *);
 
+//void FP_Growth();
+
 
 extern long long minSupportCount;
 
 extern struct treeNode *head;
+
+extern long long numFreqItems;
+
+extern struct fList freqList[100];

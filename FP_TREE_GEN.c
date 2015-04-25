@@ -24,7 +24,7 @@
 //global variables
 long long minSupportCount = 0;
 long long n ,k;
-long long numFreqItems;
+long long numFreqItems = 0;
 struct itemNode *itemSet;
 long long *frequentItems;
 struct treeNode *head = NULL;
@@ -35,6 +35,7 @@ struct fList freqList[100]; /* have to make it dynamic allocation */
 
 FILE *fp;
 FILE *freqp;
+//FILE *fitem;
 
 
 void FP_Tree_generate()
@@ -44,6 +45,8 @@ void FP_Tree_generate()
   sortInputTransaction();      //sort input tid based on support and discard infrequent items
 
   createFPTree();
+
+  //FP_Growth();
 }
 
 
@@ -58,7 +61,7 @@ void generateFrequentItemSets()
 
   minSupportCount = (long long)(minSupportCount*n/100); //minSupport is input as a percentage
 
-  itemSet = malloc( k * sizeof(struct itemNode) ); //create an itemset to find the support count of each item
+  itemSet = (struct itemNode *)malloc( k * sizeof(struct itemNode) ); //create an itemset to find the support count of each item
 
   //initialize the itemSet with the itemnumbers
   for( i=0; i<k; ++i )
@@ -75,7 +78,7 @@ void generateFrequentItemSets()
   qsort( itemSet, k, sizeof(struct itemNode), comparator );
 
   //generate the frequent itemsets
-  frequentItems = malloc( (k+1)*sizeof(long long));//the numbers are 1-based eg 1-75
+  frequentItems = (long long *)malloc( (k+1)*sizeof(long long));//the numbers are 1-based eg 1-75
 
   for(i=0; i<=k; ++i)
   {
@@ -326,7 +329,7 @@ void createFPTree()
 
 
 //iterate all the freqList items -- horizontal pointers - working fine
-
+/*
   struct treeNode *tempPtr;
   for(i=0; i<numFreqItems; ++i)
   {
@@ -353,13 +356,26 @@ void createFPTree()
     }
     //break;
   }
-
-
-  ////print the tree
-
-
-
+*/
 
 
   fclose(freqp);
 }
+
+
+/*
+void FP_Growth()
+{
+
+  fitem = fopen("frequentItemSet.txt", "w");
+
+  
+  fclose(fitem);
+
+  
+}
+*/
+
+
+
+
