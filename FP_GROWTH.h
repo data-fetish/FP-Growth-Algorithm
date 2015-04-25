@@ -12,63 +12,38 @@
 /*----------------------------------------------------------------------------*/
 
 /*
-    FP-Tree Construction
-    FP_TREE_GEN.h
+  FP-Growth - Generation of frequent itemsets
+  FP_GROWTH.h
 */
 
+#ifndef HEADER_FILE
+#define HEADER_FILE
 
-#pragma once
+#ifdef __cplusplus
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-
-
-struct itemNode
+extern "C"
 {
-  long long id;
-  long long support;
-};
 
-struct treeNode
-{
-  struct treeNode *parent;
-  long long id;
-  long long count;
-  struct treeNode *horizontal;
-  struct treeNode **children;
-};
+#endif
 
-struct fList
-{
-  long long id;
-  long long support;
-  struct treeNode *ptr;
-};
+//declare functions here
+  void checkPrinter();
 
+  void initializeStack();
 
-void FP_Tree_generate();
+  long long findIndex(long long);
 
-void generateFrequentItemSets();
+  int isCandidateFrequent();
 
-//int comparator2(const void *, const void *);
+  void generateSubProblems();
 
-void sortInputTransaction();
+  void tree_growth();
 
-void createFPTree();
+#ifdef __cplusplus
 
-int comparator(const void *, const void *);
+}
 
-int comparator2(const void *, const void *);
+#endif
 
-//void FP_Growth();
+#endif
 
-
-extern long long minSupportCount;
-
-extern struct treeNode *head;
-
-extern long long numFreqItems;
-
-extern struct fList freqList[100];

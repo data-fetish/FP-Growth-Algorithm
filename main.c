@@ -16,14 +16,14 @@
     main.c
 */
 
-
+//#pragma once
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
-#include "FP_TREE_GEN.c"
-
+//#include "FP_TREE_GEN.c"
+#include "FP_GROWTH.cpp"
 
 int main()
 {
@@ -47,6 +47,10 @@ int main()
   //FP_Tree_Generation();
   FP_Tree_generate();
   //FP_Growth();
+
+  //checkPrinter();
+
+  tree_growth();
 
   return 0;
 }
