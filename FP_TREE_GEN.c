@@ -28,6 +28,7 @@ long long numFreqItems = 0;
 struct itemNode *itemSet;
 long long *frequentItems;
 struct treeNode *head = NULL;
+long long minConfidence = 0;
 //struct fList *freqList;
 //struct fList tempFList;
 
