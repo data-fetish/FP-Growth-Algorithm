@@ -24,6 +24,7 @@ using namespace std;
 FILE *fitem;
 stack< vector<long long> > s;
 vector<long long> candidateItemSet;
+long long totalSupport = 0;
 
 
 void checkPrinter()
@@ -102,12 +103,16 @@ int isCandidateFrequent()
 {
   if(candidateItemSet.size()==1)
   {
+    totalSupport = freqList[findIndex(candidateItemSet[0])].support;
+
     return 1;
   }
 
-  long long currentSupport = 0, totalSupport = 0;
+  long long currentSupport = 0;
   long long freqIdx, tempIdx;
   int setFound;
+
+  totalSupport = 0;
 
   struct treeNode *currentPtr, *horizontalPtr;
 
@@ -137,7 +142,7 @@ int isCandidateFrequent()
     {
       if(currentPtr->id != candidateItemSet[tempIdx]) //current id in the path is not equal to the candidate[idx]
       {
-        if(findIndex(currentPtr->id) > findIndex(candidateItemSet[tempIdx]))
+        if(findIndex(currentPtr->id) < findIndex(candidateItemSet[tempIdx]))
         {
           setFound = 0;
           break;
@@ -149,10 +154,12 @@ int isCandidateFrequent()
         {
           break;
         }
+
+        tempIdx++;
       }
 
       currentPtr = currentPtr->parent;
-    }
+    } //end of while
 
     if(setFound)
     {
@@ -170,8 +177,8 @@ int isCandidateFrequent()
 
   cout<<"support="<<totalSupport<<endl;
 */
-  return totalSupport>minSupportCount?1:0;
 
+  return totalSupport>minSupportCount?1:0;
 }
 
 
@@ -194,6 +201,8 @@ void tree_growth()
       {
         fprintf(fitem, "%lld ", candidateItemSet[i]);
       }
+
+      fprintf(fitem, "%lld ", totalSupport);
       fprintf(fitem, "\n");
 
       generateSubProblems();
