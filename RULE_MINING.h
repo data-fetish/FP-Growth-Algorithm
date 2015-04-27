@@ -34,6 +34,8 @@ extern "C"
 
   void makePartitions();
 
+  bool ruleIsNotDuplicate(long long);
+
   void generatePermutations(long long, long long);
 
   void frequentItemSetRuleMining(long double);

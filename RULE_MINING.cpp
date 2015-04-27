@@ -59,7 +59,7 @@ extern "C" long long sup()
     tnum = 0;
     tcurr.clear();
 
-    for(int i=0; i<strlen(tbuf); ++i)
+    for(long long i=0; i<strlen(tbuf); ++i)
     {
       if(tbuf[i]!=' ')
       {
@@ -77,7 +77,7 @@ extern "C" long long sup()
     //current line is in tcurr
     sort(tcurr.begin(), tcurr.begin()+tidx);
 
-    for( int i=0; i<tcurr.size()-1; ++i)
+    for( long long i=0; i<tcurr.size()-1; ++i)
     {
       if(tcurr[i] != leftHandSide[i])
       {
@@ -94,10 +94,37 @@ extern "C" long long sup()
 
   }
 
-
   fclose(tfreq);
 
   return ans;
+}
+
+
+extern "C" bool ruleIsNotDuplicate(long long prtn)
+{
+  vector <long long> dupCheck(tempCurrentSet.begin(), tempCurrentSet.end());
+
+  sort(dupCheck.begin(), dupCheck.begin()+prtn);
+
+  for(long long i=0; i<=prtn; ++i)
+  {
+    if(tempCurrentSet[i] != dupCheck[i])
+    {
+      return false;
+    }
+  }
+
+  sort(dupCheck.begin()+prtn, dupCheck.end());
+
+  for(long long i=prtn; i<tempCurrentSet.size(); ++i )
+  {
+    if(tempCurrentSet[i]!=dupCheck[i])
+    {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 
@@ -108,10 +135,10 @@ extern "C" void makePartitions()
   */
   long double currentConfidence;
 
-  for(int i=1; i<tempCurrentSet.size(); ++i)
+  for(long long i=1; i<tempCurrentSet.size(); ++i)
   {
     //current rule = vj(j=0 to i) -> vl(l=i+1 to tempCurrentSet.size())
-    for(int j= 0 ; j<i; ++j)
+    for(long long j= 0 ; j<i; ++j)
     {
       leftHandSide.push_back(tempCurrentSet[j]);
     }
@@ -120,27 +147,29 @@ extern "C" void makePartitions()
 
     if(currentConfidence > minConfRule)
     {
-
-      //this rule is allowed
-      fprintf(rgen, "( " );
-      for(int j = 0; j<i; ++j)
+      if(ruleIsNotDuplicate(i))
       {
-        fprintf(rgen, "%lld ", tempCurrentSet[j]);
+        //this rule is allowed
+        fprintf(rgen, "( " );
+        for(long long j = 0; j<i; ++j)
+        {
+          fprintf(rgen, "%lld ", tempCurrentSet[j]);
+        }
+        fprintf(rgen, ")" );
+
+        fprintf(rgen, " --> " );
+
+        fprintf(rgen, "( " );
+        for(long long j = i; j<tempCurrentSet.size(); ++j)
+        {
+          fprintf(rgen, "%lld ", tempCurrentSet[j]);
+        }
+        fprintf(rgen, ")" );
+
+        fprintf(rgen, "    confidence = %Lf ", currentConfidence);
+
+        fprintf(rgen, "\n");
       }
-      fprintf(rgen, ")" );
-
-      fprintf(rgen, " --> " );
-
-      fprintf(rgen, "( " );
-      for(int j = i; j<tempCurrentSet.size(); ++j)
-      {
-        fprintf(rgen, "%lld ", tempCurrentSet[j]);
-      }
-      fprintf(rgen, ")" );
-
-      fprintf(rgen, "    confidence = %Lf ", currentConfidence);
-
-      fprintf(rgen, "\n");
     }
 
     leftHandSide.clear();
@@ -160,7 +189,7 @@ extern "C" void generatePermutations(long long a, long long n)
   }
   else
   {
-    for(int j=a; j<=n; ++j)
+    for(long long j=a; j<=n; ++j)
     {
       iter_swap(tempCurrentSet.begin()+a, tempCurrentSet.begin()+j);
       generatePermutations(a+1, n);
@@ -198,7 +227,7 @@ extern "C" void frequentItemSetRuleMining(long double minc)
     currentSet.clear();                     //clear the previous vector before adding items of new set
     tempCurrentSet.clear();
 
-    for(int i=0; i<strlen(buf); ++i)
+    for(long long i=0; i<strlen(buf); ++i)
     {
       if(buf[i]!=' ')
       {
@@ -213,7 +242,7 @@ extern "C" void frequentItemSetRuleMining(long double minc)
       } 
     }
 
-    for(int i=0; i<idx-1; ++i)
+    for(long long i=0; i<idx-1; ++i)
     {
       tempCurrentSet.push_back(currentSet[i]);
     }
