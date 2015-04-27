@@ -29,7 +29,7 @@ vector<long long> candidateItemSet;
 long long totalSupport = 0;
 
 
-void checkPrinter()
+extern "C" void checkPrinter()
 {
 
   cout<<"im high as the moon== "<<minSupportCount<<endl;
@@ -37,7 +37,7 @@ void checkPrinter()
 }
 
 
-void initializeStack()
+extern "C" void initializeStack()
 {
   //initialize the stack with single items frequent sets
   for(int i=0; i<numFreqItems; ++i)
@@ -50,7 +50,7 @@ void initializeStack()
 }
 
 
-void generateSubProblems()
+extern "C" void generateSubProblems()
 {
   int len = candidateItemSet.size();
   long long lastOne = candidateItemSet[len-1];
@@ -82,7 +82,7 @@ void generateSubProblems()
 }
 
 
-long long findIndex(long long p)
+extern "C" long long findIndex(long long p)
 {
   //linear search the freqList for the current item id
   long long idx = -1;
@@ -101,7 +101,7 @@ long long findIndex(long long p)
 
 
 
-int isCandidateFrequent()
+extern "C" int isCandidateFrequent()
 {
   if(candidateItemSet.size()==1)
   {
@@ -184,7 +184,7 @@ int isCandidateFrequent()
 }
 
 
-void fileInitializer()
+extern "C" void fileInitializer()
 {
   fitem1 = fopen("frequent1ItemSet.txt", "w");
   fitem2 = fopen("frequent2ItemSet.txt", "w");
@@ -199,7 +199,7 @@ void fileInitializer()
 }
 
 
-void tree_growth()
+extern "C" void tree_growth()
 {
 
   fitem = fopen("frequentItemSet.txt","w");
