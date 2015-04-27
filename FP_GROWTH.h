@@ -39,6 +39,8 @@ extern "C"
 
   void tree_growth();
 
+  void fileInitializer();
+
 #ifdef __cplusplus
 
 }
