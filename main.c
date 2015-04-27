@@ -22,8 +22,9 @@
 #include <string.h>
 #include <ctype.h>
 
-//#include "FP_TREE_GEN.c"
+//#include "FP_TREE_GEN.h"
 #include "FP_GROWTH.cpp"
+#include "RULE_MINING.cpp"
 
 int main()
 {
@@ -45,7 +46,7 @@ int main()
   scanf( "%lld", &minSupportCount );
 
   printf("Enther the minimum confidence: \n" );
-  scanf("%lld", &minConfidence);
+  scanf("%Lf", &minConfidence);
 
   //FP_Tree_Generation();
   FP_Tree_generate();
@@ -54,6 +55,10 @@ int main()
   //checkPrinter();
 
   tree_growth();
+
+  checker();
+
+  frequentItemSetRuleMining(minConfidence);
 
   return 0;
 }
