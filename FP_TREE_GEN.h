@@ -73,4 +73,4 @@ extern long long numFreqItems;
 
 extern struct fList freqList[100];
 
-extern long long minConfidence;
+extern long double minConfidence;
