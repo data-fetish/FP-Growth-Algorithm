@@ -36,6 +36,7 @@ extern "C"
   void generatePermutations(long long, long long);
 
   void frequentItemSetRuleMining(long double);
+  
 
 
 #ifdef __cplusplus

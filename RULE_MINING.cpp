@@ -112,7 +112,6 @@ extern "C" void makePartitions()
   for(int i=1; i<tempCurrentSet.size()-1; ++i)
   {
     //current rule = vj(j=0 to i) -> vl(l=i+1 to tempCurrentSet.size())
-
     for(int j= 0 ; j<i; ++j)
     {
       leftHandSide.push_back(tempCurrentSet[j]);
