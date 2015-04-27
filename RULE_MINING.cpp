@@ -59,9 +59,9 @@ extern "C" long long sup()
     tnum = 0;
     tcurr.clear();
 
-    for(int i=0; i<strlen(buf); ++i)
+    for(int i=0; i<strlen(tbuf); ++i)
     {
-      if(buf[i]!=' ')
+      if(tbuf[i]!=' ')
       {
         tnum *= 10;
         tnum += (tbuf[i]-'0');
@@ -75,7 +75,7 @@ extern "C" long long sup()
     }
 
     //current line is in tcurr
-    sort(tcurr.begin(), tcurr.begin()+idx);
+    sort(tcurr.begin(), tcurr.begin()+tidx);
 
     for( int i=0; i<tcurr.size()-1; ++i)
     {
@@ -106,10 +106,9 @@ extern "C" void makePartitions()
   /*
       suppose currentSet = {A,B,C,D}..... partitions make= A->BCD, AB->CD, ABC->D
   */
-
   long double currentConfidence;
 
-  for(int i=1; i<tempCurrentSet.size()-1; ++i)
+  for(int i=1; i<tempCurrentSet.size(); ++i)
   {
     //current rule = vj(j=0 to i) -> vl(l=i+1 to tempCurrentSet.size())
     for(int j= 0 ; j<i; ++j)
@@ -120,14 +119,15 @@ extern "C" void makePartitions()
     currentConfidence = ((long double) currentSet[idx-1]) / ((long double)sup()); //current rule's confidence
 
     if(currentConfidence > minConfRule)
-    {//cout<< currentSet[idx-1]<<" "<< sup()<<" "<<currentConfidence<<endl;
+    {
+
       //this rule is allowed
       fprintf(rgen, "( " );
       for(int j = 0; j<i; ++j)
       {
         fprintf(rgen, "%lld ", tempCurrentSet[j]);
       }
-      fprintf(rgen, " )" );
+      fprintf(rgen, ")" );
 
       fprintf(rgen, " --> " );
 
@@ -136,14 +136,15 @@ extern "C" void makePartitions()
       {
         fprintf(rgen, "%lld ", tempCurrentSet[j]);
       }
-      fprintf(rgen, " )" );
+      fprintf(rgen, ")" );
 
-      //fprintf(rgen, "    confidence = %Lf ", currentConfidence);
+      fprintf(rgen, "    confidence = %Lf ", currentConfidence);
 
       fprintf(rgen, "\n");
     }
 
     leftHandSide.clear();
+    break;
   }
 }
 
@@ -219,7 +220,7 @@ extern "C" void frequentItemSetRuleMining(long double minc)
 
     //now currentSet has the numbers, the last item in the vector is the support of this set
     currentSupport = currentSet[idx-1];
-
+    
     if(idx==2) //frequent 1 itemSets, cant form rules
     {
       continue;
@@ -227,7 +228,8 @@ extern "C" void frequentItemSetRuleMining(long double minc)
 
     generatePermutations(0, idx-2); //0 to size-1
 
-    
+
+
   } //while loop ends here --- while loop is freq itemset loop
 
 
