@@ -22,6 +22,8 @@
 using namespace std;
 
 FILE *fitem;
+FILE *fitem1, *fitem2, *fitem3, *fitem4, *fitem5, *fitem6,
+     *fitem7, *fitem8, *fitem9, *fitem10;
 stack< vector<long long> > s;
 vector<long long> candidateItemSet;
 long long totalSupport = 0;
@@ -182,10 +184,27 @@ int isCandidateFrequent()
 }
 
 
+void fileInitializer()
+{
+  fitem1 = fopen("frequent1ItemSet.txt", "w");
+  fitem2 = fopen("frequent2ItemSet.txt", "w");
+  fitem3 = fopen("frequent3ItemSet.txt", "w");
+  fitem4 = fopen("frequent4ItemSet.txt", "w");
+  fitem5 = fopen("frequent5ItemSet.txt", "w");
+  fitem6 = fopen("frequent6ItemSet.txt", "w");
+  fitem7 = fopen("frequent7ItemSet.txt", "w");
+  fitem8 = fopen("frequent8ItemSet.txt", "w");
+  fitem9 = fopen("frequent9ItemSet.txt", "w");
+  fitem10 = fopen("frequent10ItemSet.txt", "w");
+}
+
+
 void tree_growth()
 {
 
   fitem = fopen("frequentItemSet.txt","w");
+
+  fileInitializer();
 
   initializeStack();
 
@@ -202,6 +221,92 @@ void tree_growth()
         fprintf(fitem, "%lld ", candidateItemSet[i]);
       }
 
+      // write to files
+      switch(candidateItemSet.size())
+      {
+        case 1: for(int i=0; i<candidateItemSet.size(); ++i)
+                {
+                  fprintf(fitem1, "%lld ", candidateItemSet[i]);
+                }
+                fprintf(fitem1, "%lld ", totalSupport);
+                fprintf(fitem1, "\n");
+                break;
+
+        case 2: for(int i=0; i<candidateItemSet.size(); ++i)
+                {
+                  fprintf(fitem2, "%lld ", candidateItemSet[i]);
+                }
+                fprintf(fitem2, "%lld ", totalSupport);
+                fprintf(fitem2, "\n");
+                break;
+
+        case 3: for(int i=0; i<candidateItemSet.size(); ++i)
+                {
+                  fprintf(fitem3, "%lld ", candidateItemSet[i]);
+                }
+                fprintf(fitem3, "%lld ", totalSupport);
+                fprintf(fitem3, "\n");
+                break;
+
+        case 4: for(int i=0; i<candidateItemSet.size(); ++i)
+                {
+                  fprintf(fitem4, "%lld ", candidateItemSet[i]);
+                }
+                fprintf(fitem4, "%lld ", totalSupport);
+                fprintf(fitem4, "\n");
+                break;
+
+        case 5: for(int i=0; i<candidateItemSet.size(); ++i)
+                {
+                  fprintf(fitem5, "%lld ", candidateItemSet[i]);
+                }
+                fprintf(fitem5, "%lld ", totalSupport);
+                fprintf(fitem5, "\n");
+                break;
+
+        case 6: for(int i=0; i<candidateItemSet.size(); ++i)
+                {
+                  fprintf(fitem6, "%lld ", candidateItemSet[i]);
+                }
+                fprintf(fitem6, "%lld ", totalSupport);
+                fprintf(fitem6, "\n");
+                break;
+
+        case 7: for(int i=0; i<candidateItemSet.size(); ++i)
+                {
+                  fprintf(fitem7, "%lld ", candidateItemSet[i]);
+                }
+                fprintf(fitem7, "%lld ", totalSupport);
+                fprintf(fitem7, "\n");
+                break;
+
+        case 8: for(int i=0; i<candidateItemSet.size(); ++i)
+                {
+                  fprintf(fitem8, "%lld ", candidateItemSet[i]);
+                }
+                fprintf(fitem8, "%lld ", totalSupport);
+                fprintf(fitem8, "\n");
+                break;
+
+        case 9: for(int i=0; i<candidateItemSet.size(); ++i)
+                {
+                  fprintf(fitem9, "%lld ", candidateItemSet[i]);
+                }
+                fprintf(fitem9, "%lld ", totalSupport);
+                fprintf(fitem9, "\n");
+                break;
+
+        case 10:for(int i=0; i<candidateItemSet.size(); ++i)
+                {
+                  fprintf(fitem10, "%lld ", candidateItemSet[i]);
+                }
+                fprintf(fitem10, "%lld ", totalSupport);
+                fprintf(fitem10, "\n");
+                break;
+
+        default: cout<<"frequent "<<candidateItemSet.size()<<" itemsets are not considered"<<endl;
+      }
+
       fprintf(fitem, "%lld ", totalSupport);
       fprintf(fitem, "\n");
 
@@ -213,6 +318,7 @@ void tree_growth()
 
 
   fclose(fitem);
+  fcloseall();
 }
 
 

@@ -72,3 +72,5 @@ extern struct treeNode *head;
 extern long long numFreqItems;
 
 extern struct fList freqList[100];
+
+extern long long minConfidence;

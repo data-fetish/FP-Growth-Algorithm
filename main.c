@@ -44,6 +44,9 @@ int main()
   printf( "Enter the minimum support count: " );
   scanf( "%lld", &minSupportCount );
 
+  printf("Enther the minimum confidence: \n" );
+  scanf("%lld", &minConfidence);
+
   //FP_Tree_Generation();
   FP_Tree_generate();
   //FP_Growth();
