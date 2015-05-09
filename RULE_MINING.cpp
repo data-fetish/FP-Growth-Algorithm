@@ -178,7 +178,6 @@ extern "C" void makePartitions()
 }
 
 
-
 extern "C" void generatePermutations(long long a, long long n)
 {
   if(a==n)
@@ -198,7 +197,6 @@ extern "C" void generatePermutations(long long a, long long n)
   }
   
 }
-
 
 
 extern "C" void frequentItemSetRuleMining(long double minc)
@@ -257,13 +255,11 @@ extern "C" void frequentItemSetRuleMining(long double minc)
 
     generatePermutations(0, idx-2); //0 to size-1
 
-
-
   } //while loop ends here --- while loop is freq itemset loop
 
 
-
   fclose(freq);
+
   fclose(rgen);
 
 }

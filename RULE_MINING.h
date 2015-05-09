@@ -40,8 +40,6 @@ extern "C"
 
   void frequentItemSetRuleMining(long double);
   
-
-
 #ifdef __cplusplus
 
 }

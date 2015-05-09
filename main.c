@@ -1,13 +1,13 @@
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
-/*   Copyright (c) 2015 data-fetish                                           */
-/*   All rights reserved.                                                     */
+/*                   Copyright (c) 2015 data-fetish                           */
+/*                   All rights reserved.                                     */
 /*                                                                            */
-/*   Team: Knowledge-mining                                                   */
+/*                   Team: Knowledge-mining                                   */
 /*                                                                            */
-/*   Authors:  Akash Raj K N                                                  */
-/*             Gopichand Paturi                                               */
-/*             Anjali Thakur                                                  */
+/*                   Authors:  Akash Raj K N                                  */
+/*                             Gopichand Paturi                               */
+/*                             Anjali Thakur                                  */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 
@@ -22,43 +22,25 @@
 #include <string.h>
 #include <ctype.h>
 
-//#include "FP_TREE_GEN.h"
 #include "FP_GROWTH.cpp"
 #include "RULE_MINING.cpp"
 
+
 int main()
 {
-  /*
-     - get the min support count or percentage from user
-       
-     - FP-Tree-Generation
-       - generate frequent itemset 
-       - sort the input transactions in descending order based on frequent itemset support count
-       - create the FP-tree
 
-     - FP-Growth
 
-  */
-
-//  long long minSupportCount = 0;
-
-  printf( "Enter the minimum support count: " );
+  printf( "Enter the minimum support count [0-100]: " );
   scanf( "%lld", &minSupportCount );
 
-  printf("Enther the minimum confidence: \n" );
+  printf( "Enter the minimum confidence [0-1]: \n" );
   scanf("%Lf", &minConfidence);
 
-  //FP_Tree_Generation();
-  FP_Tree_generate();
-  //FP_Growth();
+  FP_Tree_generate();  //create the FP_Tree
 
-  //checkPrinter();
+  tree_growth();       //find the frequent itemsets using growth algorithm
 
-  tree_growth();
-
-  checker();
-
-  frequentItemSetRuleMining(minConfidence);
+  frequentItemSetRuleMining(minConfidence);  //form rules from the frequent itemsets
 
   return 0;
 }

@@ -1,13 +1,13 @@
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
-/*   Copyright (c) 2015 data-fetish                                           */
-/*   All rights reserved.                                                     */
+/*                   Copyright (c) 2015 data-fetish                           */
+/*                   All rights reserved.                                     */
 /*                                                                            */
-/*   Team: Knowledge-mining                                                   */
+/*                   Team: Knowledge-mining                                   */
 /*                                                                            */
-/*   Authors:  Akash Raj K N                                                  */
-/*             Gopichand Paturi                                               */
-/*             Anjali Thakur                                                  */
+/*                   Authors:  Akash Raj K N                                  */
+/*                             Gopichand Paturi                               */
+/*                             Anjali Thakur                                  */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 
@@ -31,9 +31,7 @@ long long totalSupport = 0;
 
 extern "C" void checkPrinter()
 {
-
   cout<<"im high as the moon== "<<minSupportCount<<endl;
-
 }
 
 
@@ -46,7 +44,6 @@ extern "C" void initializeStack()
     temp.push_back(freqList[i].id);
     s.push(temp);
   }
-
 }
 
 
@@ -58,8 +55,8 @@ extern "C" void generateSubProblems()
   vector<long long> candidateExtend, tempvec;
 
   candidateExtend = candidateItemSet;
-  candidateExtend.push_back(-1);
 
+  candidateExtend.push_back(-1);
 
   for(int i=0; i<numFreqItems; ++i)
   {
@@ -71,13 +68,6 @@ extern "C" void generateSubProblems()
     candidateExtend[len] = freqList[i].id;
 
     s.push(candidateExtend);
-    /*tempvec = s.top();
-
-    for(int j=0; j<tempvec.size();++j)
-    {
-      cout<<tempvec[j]<<" ";
-    }
-    cout<<endl;*/
   }
 }
 
@@ -98,7 +88,6 @@ extern "C" long long findIndex(long long p)
 
   return idx;
 }
-
 
 
 extern "C" int isCandidateFrequent()
@@ -170,15 +159,6 @@ extern "C" int isCandidateFrequent()
 
     horizontalPtr = horizontalPtr->horizontal; //go to the next horizontal pointer
   }
-/*
-  for(int i=0; i<candidateItemSet.size(); ++i)
-  {
-    printf("%lld  ", candidateItemSet[i]);
-  }
-  printf("\n");
-
-  cout<<"support="<<totalSupport<<endl;
-*/
 
   return totalSupport>minSupportCount?1:0;
 }
@@ -201,7 +181,6 @@ extern "C" void fileInitializer()
 
 extern "C" void tree_growth()
 {
-
   fitem = fopen("frequentItemSet.txt","w");
 
   fileInitializer();
@@ -315,9 +294,8 @@ extern "C" void tree_growth()
 
   }
 
-
-
   fclose(fitem);
+  
   fcloseall();
 }
 

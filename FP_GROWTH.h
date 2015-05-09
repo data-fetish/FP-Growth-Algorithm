@@ -1,13 +1,13 @@
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
-/*   Copyright (c) 2015 data-fetish                                           */
-/*   All rights reserved.                                                     */
+/*                   Copyright (c) 2015 data-fetish                           */
+/*                   All rights reserved.                                     */
 /*                                                                            */
-/*   Team: Knowledge-mining                                                   */
+/*                   Team: Knowledge-mining                                   */
 /*                                                                            */
-/*   Authors:  Akash Raj K N                                                  */
-/*             Gopichand Paturi                                               */
-/*             Anjali Thakur                                                  */
+/*                   Authors:  Akash Raj K N                                  */
+/*                             Gopichand Paturi                               */
+/*                             Anjali Thakur                                  */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 

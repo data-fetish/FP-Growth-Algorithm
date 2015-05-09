@@ -1,13 +1,13 @@
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
-/*   Copyright (c) 2015 data-fetish                                           */
-/*   All rights reserved.                                                     */
+/*                   Copyright (c) 2015 data-fetish                           */
+/*                   All rights reserved.                                     */
 /*                                                                            */
-/*   Team: Knowledge-mining                                                   */
+/*                   Team: Knowledge-mining                                   */
 /*                                                                            */
-/*   Authors:  Akash Raj K N                                                  */
-/*             Gopichand Paturi                                               */
-/*             Anjali Thakur                                                  */
+/*                   Authors:  Akash Raj K N                                  */
+/*                             Gopichand Paturi                               */
+/*                             Anjali Thakur                                  */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 
@@ -52,8 +52,6 @@ void FP_Tree_generate();
 
 void generateFrequentItemSets();
 
-//int comparator2(const void *, const void *);
-
 void sortInputTransaction();
 
 void createFPTree();
@@ -61,8 +59,6 @@ void createFPTree();
 int comparator(const void *, const void *);
 
 int comparator2(const void *, const void *);
-
-//void FP_Growth();
 
 
 extern long long minSupportCount;
